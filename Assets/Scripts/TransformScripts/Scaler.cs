@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ScaleAnimationComponent : MonoBehaviour
+public class Scaler : MonoBehaviour
 {
 
     [SerializeField] private Vector3 _initialScale = Vector3.one;
@@ -10,21 +10,12 @@ public class ScaleAnimationComponent : MonoBehaviour
     private int _maxScale = 2;
     private int _minScale = 1;
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Update()
     {
-        _initialScale = transform.localScale;
+        ScaleProcess();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        scaleProcess();
-    }
-
-    private void scaleProcess()
+    private void ScaleProcess()
     {
         Vector3 currentScale = transform.localScale;
         float divX = currentScale.x / _initialScale.x;
