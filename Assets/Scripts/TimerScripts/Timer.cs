@@ -45,7 +45,6 @@ public class Timer : MonoBehaviour
         }
     }
 
-
     private void UpdateCounterText()
     {
         if (counterText != null)
