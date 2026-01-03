@@ -820,6 +820,8 @@ GameObject:
   - component: {fileID: 439703564}
   - component: {fileID: 439703563}
   - component: {fileID: 439703567}
+  - component: {fileID: 439703569}
+  - component: {fileID: 439703568}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -923,6 +925,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   counterText: {fileID: 1259571325}
+--- !u!114 &439703568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439703562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbcd5e61578d6d34a91a0a318ae2f3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputReader
+--- !u!114 &439703569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439703562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f7a0b88f35f164298126b838c3e8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CounterView
+  _counterText: {fileID: 0}
+  _prefix: "\u0421\u0447\u0435\u0442\u0447\u0438\u043A: "
 --- !u!1 &780703538
 GameObject:
   m_ObjectHideFlags: 0

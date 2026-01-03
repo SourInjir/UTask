@@ -1,32 +1,43 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
-using TMPro;
+using System;
 
-public class Timer : MonoBehaviour
+public class Counter : MonoBehaviour
 {
-    [SerializeField] private TMP_Text counterText;
-
     private Coroutine countingCoroutine;
     private bool _isRun = false;
     private int _count = 0;
     private float _interval = 0.5f;
+    private WaitForSeconds _waitInterval;
 
-    private void Update()
+    public event Action<int> OnCounterChanged;
+
+
+    private void Start()
     {
-        if (Input.GetMouseButtonDown(0))
+        _waitInterval = new WaitForSeconds(_interval);
+
+        var inputReader = FindObjectOfType<InputReader>();
+        if (inputReader != null)
         {
-            ToggleCounting();
+            inputReader.OnMouseClicked += ToggleCounting;
         }
+        else
+        {
+            Debug.LogError("InputReader не найден на сцене!");
+        }
+
+        OnCounterChanged?.Invoke(_count);
     }
+
 
     private IEnumerator CountCoroutine()
     {
         while (true)
         {
-            yield return new WaitForSeconds(_interval);
+            yield return _waitInterval;
             _count++;
-            UpdateCounterText();
+            OnCounterChanged?.Invoke(_count);
         }
     }
 
@@ -45,14 +56,6 @@ public class Timer : MonoBehaviour
         }
     }
 
-    private void UpdateCounterText()
-    {
-        if (counterText != null)
-        {
-            counterText.text = _count.ToString();
-        }
-    }
-
     private void OnDisable()
     {
         if (countingCoroutine != null)
@@ -62,4 +65,12 @@ public class Timer : MonoBehaviour
             _isRun = false;
         }
     }
+
+    public void SetCount(int value)
+    {
+        _count = value;
+        OnCounterChanged?.Invoke(_count);
+    }
+
+    public int GetCount() => _count;
 }
