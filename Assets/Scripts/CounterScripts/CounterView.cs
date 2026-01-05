@@ -4,14 +4,13 @@ using UnityEngine;
 public class CounterView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _counterText;
+    [SerializeField] private Counter _counter;
 
     private void Start()
     {
-        var counter = FindObjectOfType<Counter>();
-
-        if (counter != null)
+        if (_counter != null)
         {
-            counter.OnCounterChanged += UpdateCounterView;
+            _counter.CounterChanged += UpdateCounterView;
         }
         else
         {
@@ -24,10 +23,9 @@ public class CounterView : MonoBehaviour
     private void OnDestroy()
     {
 
-        var counter = FindObjectOfType<Counter>();
-        if (counter != null)
+        if (_counter != null)
         {
-            counter.OnCounterChanged -= UpdateCounterView;
+            _counter.CounterChanged -= UpdateCounterView;
         }
     }
 
